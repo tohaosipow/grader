@@ -1,0 +1,17 @@
+{
+    "name": "antonosipov/grader",
+    "authors": [
+        {
+            "name": "Anton Osipov",
+            "email": "tohaosipow@yandex.ru"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Tests\\": "tests"
+        }
+    },
+    "require": {
+        "phpseclib/phpseclib": "~1.0"
+    }
+}
