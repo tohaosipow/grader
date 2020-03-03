@@ -30,6 +30,8 @@ function login(){
     curl_setopt($ch, CURLOPT_TIMEOUT, 30);
     curl_setopt($ch, CURLOPT_COOKIEJAR, 'cookies.txt');
     curl_setopt($ch, CURLOPT_COOKIEFILE, 'cookies.txt');
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
     $return = (curl_exec($ch));
     curl_close($ch);
@@ -45,6 +47,8 @@ function getTask(){
     curl_setopt($ch, CURLOPT_COOKIEFILE, 'cookies.txt');
     curl_setopt($ch, CURLOPT_USERPWD, "php_mvc1@external.grader:aJtp2Dtzi3ySQnqi");
     curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
     $return = (curl_exec($ch));
     curl_close($ch);
@@ -60,6 +64,8 @@ function putresult($sub_id, $sub_key, $score, $msg){
     curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query(["xqueue_body" => json_encode(array("score" => $score, "msg" => $msg)), 'xqueue_header' => json_encode(array("submission_id" => $sub_id, "submission_key" => $sub_key))]));
     curl_setopt($ch, CURLOPT_USERPWD, "php_mvc1@external.grader:aJtp2Dtzi3ySQnqi");
     curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
     curl_setopt($ch, CURLOPT_COOKIEJAR, 'cookies.txt');
     curl_setopt($ch, CURLOPT_COOKIEFILE, 'cookies.txt');
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
