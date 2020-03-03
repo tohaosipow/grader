@@ -1,25 +1,24 @@
 <?php
 
 require_once "vendor/autoload.php";
-
-$object = json_decode(getTask());
-if($object->return_code === 0) {
-    $content = json_decode($object->content);
-    $header = json_decode($content->xqueue_header);
-    $body = json_decode($content->xqueue_body);
-    $files = json_decode($content->xqueue_files);
-    //$file = "project.zip";
-    //var_dump($files->$file);
-    $payload = json_decode($body->grader_payload);
-    $class_name = "Tests\\".$payload->task_name;
-    /* @var $class \Tests\Task*/
-    $class = new $class_name($body->student_response, $files);
-    $class->upload();
-    $point = $class->test();
-    putresult($header->submission_id, $header->submission_key, $point[0], $point[1]);
+while (true) {
+    $object = json_decode(getTask());
+    if ($object->return_code === 0) {
+        $content = json_decode($object->content);
+        $header = json_decode($content->xqueue_header);
+        $body = json_decode($content->xqueue_body);
+        $files = json_decode($content->xqueue_files);
+        //$file = "project.zip";
+        //var_dump($files->$file);
+        $payload = json_decode($body->grader_payload);
+        $class_name = "Tests\\" . $payload->task_name;
+        /* @var $class \Tests\Task */
+        $class = new $class_name($body->student_response, $files);
+        $class->upload();
+        $point = $class->test();
+        putresult($header->submission_id, $header->submission_key, $point[0], $point[1]);
+    } else echo "Нет новых задач \n";
 }
-else echo "Нет новых задач \n";
-
 
 function login(){
     $ch = curl_init("https://stepik.org/api/xqueue/login/");
@@ -73,4 +72,3 @@ function putresult($sub_id, $sub_key, $score, $msg){
     curl_close($ch);
     return $return;
 }
-
