@@ -52,6 +52,10 @@ function getTask(){
     curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
     $return = (curl_exec($ch));
+    if (curl_errno($ch)) {
+        $error_msg = curl_error($ch);
+        echo $error_msg;
+    }
     curl_close($ch);
     return $return;
 }
