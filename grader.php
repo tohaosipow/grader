@@ -3,6 +3,7 @@
 require_once "vendor/autoload.php";
 while (true) {
     $object = json_decode(getTask());
+    var_dump($object);
     if ($object->return_code === 0) {
         $content = json_decode($object->content);
         $header = json_decode($content->xqueue_header);
@@ -11,6 +12,7 @@ while (true) {
         //$file = "project.zip";
         //var_dump($files->$file);
         $payload = json_decode($body->grader_payload);
+        var_dump($payload);
         $class_name = "Tests\\" . $payload->task_name;
         /* @var $class \Tests\Task */
         $class = new $class_name($body->student_response, $files);

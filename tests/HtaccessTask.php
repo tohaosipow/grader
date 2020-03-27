@@ -19,17 +19,17 @@ class HtaccessTask extends Task
     public function test()
     {
         $point = 0;
-        $r1 = $this->checkRedirect('http://165.22.21.183:3000/ima2ge.html');
+        $r1 = $this->checkRedirect('165.22.21.183:3000/ima2ge.html');
         if ($r1 != null) return 0;
-        $r1 = $this->checkRedirect('http://165.22.21.183:3000/ima2ge.jpg');
+        $r1 = $this->checkRedirect('165.22.21.183:3000/ima2ge.jpg');
         if ($r1 != null && $r1 = 'http://i.imgur.com/qX4w7.gif') $point++;
-        $r1 = $this->checkRedirect('http://165.22.21.183:3000/image.png');
+        $r1 = $this->checkRedirect('165.22.21.183:3000/image.png');
         if ($r1 != null && $r1 = 'http://i.imgur.com/qX4w7.gif') $point++;
-        $r1 = $this->checkRedirect('http://165.22.21.183:3000/kk.gif');
+        $r1 = $this->checkRedirect('165.22.21.183:3000/kk.gif');
         if ($r1 != null && $r1 = 'http://i.imgur.com/qX4w7.gif') $point++;
-        $r1 = $this->checkRedirect('http://165.22.21.183:3000/kk.jpeg');
+        $r1 = $this->checkRedirect('165.22.21.183:3000/kk.jpeg');
         if ($r1 != null && $r1 = 'http://i.imgur.com/qX4w7.gif') $point++;
-        $r1 = $this->checkRedirect('http://165.22.21.183:3000/kk.svg');
+        $r1 = $this->checkRedirect('165.22.21.183:3000/kk.svg');
         if ($r1 != null && $r1 = 'http://i.imgur.com/qX4w7.gif') $point++;
         return [$point/5, "Если балл частичный, то Вы не все учли. Если неверно - ваш .htaccess не правильно работает."];
     }
